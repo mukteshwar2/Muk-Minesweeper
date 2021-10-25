@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  database: muk_minesweeper_development
+
+test: &test
+  <<: *default
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  database: muk_minesweeper_test
+
+production:
+  <<: *default
+  database: muk_minesweeper_production

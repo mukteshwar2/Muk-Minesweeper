@@ -1,0 +1,28 @@
+<%= turbo_frame_tag "game_frame" do %>
+<div data-controller="game">
+  <%= form_with model: @game, url: game_path do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :status, data:{"game-target" => "status"} %>
+    <input type="hidden" name="game[cell][cell_no]" data-game-target="cell_no">
+    <input type="hidden" name="game[cell][near_mines_count]" data-game-target="near_mines_count">
+    <h1 data-game-target="message" class="text-center text-red-500 text-4xl font-bold mt-8"></h1>
+    <div class="flex max-w-full overflow-auto justify-center mt-16">
+      <table class="table-fixed border-collapse">
+        <tbody>
+        <% (1..@row).each do |x| %>
+          <tr data-row="<%=x%>">
+            <%(1..@col).each do |y|%>
+              <% key = "cell_#{x}_#{y}" %>
+              <td id="cell-<%=@cells[key]["id"] %>" class="<%=@cells[key]["state"] %> <%= @cells[key]["mine-in-cell"]%> w-12 h-12 border border-gray-500 text-center text-blue-500 text-3xl font-bold" data-id="<%=@cells[key]["id"] %>" data-row="<%=x%>" data-column="<%=y%>" data-action="click->game#onCellClick  contextmenu->game#setFlag">
+              <%= @cells[key]["near_mines_count"].to_i>0 ? @cells[key]["near_mines_count"] : '' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= f.submit class: "hidden", "data-game-target" => "submit" %>
+  <% end %>
+</div>
+<% end %>

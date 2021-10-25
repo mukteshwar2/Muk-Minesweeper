@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_id: 1
+  cell_no: 1
+  state: MyString
+  mine_cell: false
+  row_data: 1
+  col_data: 1
+
+two:
+  game_id: 1
+  cell_no: 1
+  state: MyString
+  mine_cell: false
+  row_data: 1
+  col_data: 1
