@@ -11,3 +11,16 @@ https://turbo.hotwired.dev/
 Tailwind CSS
 https://tailwindcss.com/
 
+# Project setup and run: 
+
+git clone https://github.com/mukteshwar2/Muk-Minesweeper.git
+
+rails db:create
+
+rails db:migrate
+
+bin/webpack-dev-server 
+
+rails s
+
+
